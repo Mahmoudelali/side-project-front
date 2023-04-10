@@ -17,6 +17,7 @@ export const LoginContext = React.createContext();
 export const ProductsProvider = React.createContext();
 export const CrudOperations = React.createContext();
 export const windowExpand = React.createContext();
+export const UserData = React.createContext();
 
 function onlyUnique(value, index, array) {
 	return array.indexOf(value) === index;
@@ -26,6 +27,7 @@ function App() {
 	const [editViewExpanded, setEditViewExpanded] = useState(false);
 	const [signedIn, setSignedIn] = useState(false);
 	const [products, setProducts] = useState(null);
+	const [userCredentials, setUserCredentials] = useState(null);
 	const [crudFunctions, setCrudFunctions] = useState({
 		getAllProducts: getAllProducts,
 		handleDeleteProduct: handleDeleteProduct,
@@ -45,8 +47,7 @@ function App() {
 			return onlyUnique(cat, index, arrOfCategories);
 		});
 	// Add product
-	function handleAddProduct(e, values) {
-		e.preventDefault();
+	function handleAddProduct(values) {
 		axios
 			.post('http://localhost:4000/api/item/create', values, {
 				headers: {
@@ -123,62 +124,71 @@ function App() {
 				<nav>
 					<NavLink to={'/admin/dashboard/settings'}></NavLink>
 				</nav>
-				<CrudOperations.Provider
-					value={[crudFunctions, setCrudFunctions]}
-				>
-					<windowExpand.Provider
-						value={[editViewExpanded, setEditViewExpanded]}
-					>
-						<LoginContext.Provider value={[signedIn, setSignedIn]}>
-							<Routes>
-								<Route path="/login" element={<Login />} />
-								<Route
-									path="/"
-									element={
-										<Home
-											products={products}
-											categories={uniqueCategories}
-										/>
-									}
-								/>
-								<Route
-									path="/admin/dashboard"
-									element={<Dashboard />}
-								>
-									<Route
-										path="/admin/dashboard/settings"
-										element={<Settings />}
-									/>
 
+				<UserData.Provider
+					value={[userCredentials, setUserCredentials]}
+				>
+					<CrudOperations.Provider
+						value={[crudFunctions, setCrudFunctions]}
+					>
+						<windowExpand.Provider
+							value={[editViewExpanded, setEditViewExpanded]}
+						>
+							<LoginContext.Provider
+								value={[signedIn, setSignedIn]}
+							>
+								<Routes>
+									<Route path="/login" element={<Login />} />
 									<Route
-										path="/admin/dashboard/products"
+										path="/"
 										element={
-											<Products
-												getAllProducts={getAllProducts}
+											<Home
 												products={products}
+												categories={uniqueCategories}
 											/>
 										}
+									/>
+									<Route
+										path="/admin/dashboard"
+										element={<Dashboard />}
 									>
 										<Route
-											path="/admin/dashboard/products/:id"
+											path="/admin/dashboard/settings"
+											element={<Settings />}
+										/>
+
+										<Route
+											path="/admin/dashboard/products"
 											element={
-												<EditProduct
-													products={
-														products && products
+												<Products
+													getAllProducts={
+														getAllProducts
 													}
+													products={products}
 												/>
 											}
-										></Route>
+										>
+											<Route
+												path="/admin/dashboard/products/:id"
+												element={
+													<EditProduct
+														products={
+															products && products
+														}
+													/>
+												}
+											></Route>
+										</Route>
+										<Route
+											path="/admin/dashboard/add"
+											element={<AddProduct />}
+										/>
 									</Route>
-									<Route
-										path="/admin/dashboard/add"
-										element={<AddProduct />}
-									/>
-								</Route>
-							</Routes>
-						</LoginContext.Provider>
-					</windowExpand.Provider>
-				</CrudOperations.Provider>
+								</Routes>
+							</LoginContext.Provider>
+						</windowExpand.Provider>
+					</CrudOperations.Provider>
+				</UserData.Provider>
 			</BrowserRouter>
 		</div>
 	);

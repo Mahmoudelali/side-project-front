@@ -1,0 +1,120 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.active {
+	color: rgb(252, 218, 26) !important;
+}
+.dash-container {
+	display: flex;
+}
+.dash-container header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	color: #eee;
+	min-width: 13%;
+	max-width: 23%;
+	background-color: #0e1a35;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	z-index: 99999999;
+}
+.dash-container header nav {
+	padding: 1rem 15px 0 0;
+	display: flex;
+	flex-direction: column;
+
+	height: calc(100vh - 2rem);
+	flex-basis: 100%;
+}
+
+.dash-container header nav a {
+	display: block;
+	color: #eee;
+	font-weight: 500;
+	position: relative;
+	text-transform: capitalize;
+	margin-bottom: 3px;
+	padding: 10px 20px 10px 17px;
+	transition: 0.3s;
+}
+
+.dash-container header nav a::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 10px;
+	height: 100%;
+	background-color: #5584ff;
+	transition: 0.2s;
+}
+
+.dash-logout div {
+	display: inline-block;
+	vertical-align: middle;
+}
+.dash-logout div:nth-child(2) {
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+
+/* side link styles */
+.side-link-margin {
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+.inline-block {
+	display: inline-block;
+}
+.vertical-align-middle {
+	vertical-align: middle;
+}
+/* table Css */
+.products-container > div {
+	margin-left: auto;
+	width: calc(100% - 13%);
+}
+.products-container table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 14px;
+	color: #333;
+	line-height: 1.5;	
+}
+
+.products-container th,
+.products-container td {
+	color: gray !important;
+	padding: 10px 20px;
+	text-align: center !important;
+	border-bottom: 1px solid #ddd;
+}
+
+.products-container th {
+	font-weight: bold;
+	background-color: #f2f2f2;
+}
+
+.products-container tr:nth-child(even) {
+	background-color: #f2f2f2;
+	
+}
+.delete-icon,
+.edit-icon {
+	transition: 0.4s !important;
+}
+.delete-icon:hover {
+	color: #dc3545 !important;
+}
+.edit-icon:hover {
+	color: blueviolet !important;
+}
+main {
+	width: calc(100% - 13%) !important; 
+}

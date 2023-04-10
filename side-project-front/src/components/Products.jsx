@@ -1,12 +1,14 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Loader from './Loader';
-import Product from '../components/Product.jsx';
+
 import Dash_Products from './Dash_Products.jsx';
-import EditProduct from './EditProduct';
-import { Outlet } from 'react-router-dom';
+
+import { NavLink, Outlet } from 'react-router-dom';
+import { Grid } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 // export const windowExpand = createContext();
-import {windowExpand } from '../App.jsx'
+import { windowExpand } from '../App.jsx';
 
 const Products = ({ products }) => {
 	// const [Products, setProducts] = useContext(Products);
@@ -18,32 +20,52 @@ const Products = ({ products }) => {
 				{!products ? (
 					<Loader />
 				) : (
-					<table>
-						<thead>
-							<tr>
-								<th>name</th>
-								<th>image</th>
-								<th>price($)</th>
-								<th>edit</th>
-								<th>delete</th>
-							</tr>
-						</thead>
-						<tbody>
-							{products &&
-								products.map(({ name, price, image, _id }) => (
-									<Dash_Products
-										setEditViewExpanded={
-											setEditViewExpanded
-										}
-										key={_id}
-										name={name}
-										price={price}
-										image={image}
-										_id={_id}
-									/>
-								))}
-						</tbody>
-					</table>
+					<div>
+						<NavLink to={'/admin/dashboard/add'}>
+							<button className="btn">
+								<Grid item xs={1}>
+									<AddIcon />
+								</Grid>
+								Add new
+							</button>
+						</NavLink>
+						<table>
+							<thead>
+								<tr>
+									<th>name</th>
+									<th>image</th>
+									<th>price($)</th>
+									<th>on-page</th>
+									<th>edit</th>
+									<th>delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								{products &&
+									products.map(
+										({
+											name,
+											price,
+											image,
+											_id,
+											onPage,
+										}) => (
+											<Dash_Products
+												setEditViewExpanded={
+													setEditViewExpanded
+												}
+												onPage={onPage ? onPage : null}
+												key={_id}
+												name={name}
+												price={price}
+												image={image}
+												_id={_id}
+											/>
+										),
+									)}
+							</tbody>
+						</table>
+					</div>
 				)}
 				<Outlet />
 			</div>
