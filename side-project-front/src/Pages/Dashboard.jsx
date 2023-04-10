@@ -8,7 +8,7 @@ const Dashboard = ({ products }) => {
 		<div>
 			<nav>
 				<h1>Dashboard</h1>
-				<NavLink to="/login">Login</NavLink>
+				<NavLink to="/logout">logout</NavLink>
 				<NavLink to="/admin/dashboard/products">products</NavLink>
 				<NavLink to="/admin/dashboard/settings">settings</NavLink>
 				<NavLink to="/admin/dashboard/add"> add new product</NavLink>

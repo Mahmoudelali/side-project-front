@@ -63,12 +63,19 @@ a {
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.box-shadow {
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 .w-100 {
 	width: 100%;
 }
 
 .flex {
 	display: flex;
+}
+.flex-direction-column {
+	flex-direction: column;
 }
 .justify-content-between {
 	justify-content: space-between;

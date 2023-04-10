@@ -59,21 +59,6 @@ export default function AddProduct() {
 		console.log(values);
 		resetForm();
 	};
-	// const handleAddProduct = (e) => {
-	// 	e.preventDefault();
-	// 	axios
-	// 		.post('http://localhost:4000/api/item/create', product.values, {
-	// 			headers: {
-	// 				'auth-token': `Bearer ${localStorage['auth-token']}`,
-	// 			},
-	// 		})
-	// 		.then((res) => {
-	// 			console.log(res);
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// };
 
 	return (
 		<div className="add-product-container">
@@ -92,17 +77,26 @@ export default function AddProduct() {
 						key={id}
 						className="label block margin-bottom--16  "
 					>
-						<span className="mb-10">{label}</span>
+						<span
+							className="mb-10"
+							style={{ marginBottom: '10px' }}
+						>
+							{label}
+						</span>
 						{type === 'select' ? (
 							<select
-								className="block"
+								className="input block"
 								onChange={product.handleChange}
 								id={id}
 								name={name}
 								{...rest}
 							>
 								{...rest.options.map(({ value, label }) => (
-									<option value={value} key={value}>
+									<option
+										value={value}
+										key={value}
+										className="input block"
+									>
 										{label}
 									</option>
 								))}

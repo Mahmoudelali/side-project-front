@@ -45,3 +45,34 @@
 	top: 0;
 	left: 0;
 }
+
+.single-product {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+
+	position: fixed;
+	/* left: 100%; */
+	width: 100vw;
+	height: 100vh;
+	background-color: #ffffff88;
+	transition: 0.5s;
+	/* background-color: purple; */
+}
+.single-product > div {
+	margin-top: 7%;
+	/* background-color: red; */
+	border-radius: 10px;
+	border: 1px solid lightgray;
+	background-color: #fff;
+}
+.single-product .prod-img-container {
+	width: 40%;
+	height: 500px;
+	/* background-color: red; */
+}
+.single-product .prod-img-container img {
+	max-width: 100%;
+	height: 100%;
+	object-fit: contain !important;
+}
